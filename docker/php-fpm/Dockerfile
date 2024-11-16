@@ -8,7 +8,7 @@ RUN apk add --update linux-headers
 RUN apk add --no-cache libpq-dev && docker-php-ext-install pdo_pgsql
 
 # Source code
-WORKDIR /var/www/otus-project
+WORKDIR /var/www/travel-expense-tracker
 
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
