@@ -16,7 +16,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - .:/var/www/otus-project
+      - .:/var/www/travel-expense-tracker
 
   postgres:
     container_name: ${PROJECT_PREFIX:-tet}-postgres
