@@ -8,6 +8,7 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-bcmath": "*",
         "boshurik/telegram-bot-bundle": "*",
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.13",
