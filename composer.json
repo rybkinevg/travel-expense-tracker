@@ -1,15 +1,17 @@
 {
     "name": "rybkinevg/travel-expense-tracker",
+    "description": "N/A",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "php": "^8.3",
+        "ext-intl": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-bcmath": "*",
-        "boshurik/telegram-bot-bundle": "*",
+        "boshurik/telegram-bot-bundle": "^6.0",
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.3",
