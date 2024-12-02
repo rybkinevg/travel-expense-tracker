@@ -20,3 +20,22 @@ services:
       - '../src/DependencyInjection/'
       - '../src/Entity/'
       - '../src/Kernel.php'
+
+  doctrineMigrationDiffListener:
+    class: App\Shared\Infrastructure\Doctrine\EventListener\FixPostgreSQLDefaultSchemaListener
+    tags:
+      - { name: doctrine.event_listener, event: postGenerateSchema }
+
+  doctrineInitTripSpecificationPoolListener:
+    class: App\TravelExpenseTracker\Infrastructure\Doctrine\EventListener\InitSpecificationOnPostLoadListener
+    tags:
+      - { name: doctrine.event_listener, event: postLoad }
+
+  _instanceof:
+    App\Shared\Application\Command\CommandHandlerInterface:
+      tags:
+        - { name: messenger.message_handler, bus: command.bus }
+
+    App\Shared\Application\Query\QueryHandlerInterface:
+      tags:
+        - { name: messenger.message_handler, bus: query.bus }

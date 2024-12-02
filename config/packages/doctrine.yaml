@@ -1,8 +1,19 @@
 doctrine:
   dbal:
-    url: '%env(resolve:DATABASE_URL)%'
+    driver: '%env(resolve:DATABASE_DRIVER)%'
+    server_version: '%env(resolve:DATABASE_SERVER_VERSION)%'
+    host: '%env(resolve:DATABASE_HOST)%'
+    port: '%env(resolve:DATABASE_PORT)%'
+    dbname: '%env(resolve:DATABASE_NAME)%'
+    user: '%env(resolve:DATABASE_USER)%'
+    password: '%env(resolve:DATABASE_PASSWORD)%'
+    charset: UTF8
     profiling_collect_backtrace: '%kernel.debug%'
     use_savepoints: true
+    types:
+      trip_id: App\TravelExpenseTracker\Infrastructure\Doctrine\DBAL\Type\TripIdType
+      traveler_id: App\TravelExpenseTracker\Infrastructure\Doctrine\DBAL\Type\TravelerIdType
+      expense_id: App\TravelExpenseTracker\Infrastructure\Doctrine\DBAL\Type\ExpenseIdType
   orm:
     auto_generate_proxy_classes: true
     enable_lazy_ghost_objects: true
@@ -13,12 +24,18 @@ doctrine:
       Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
     auto_mapping: true
     mappings:
-      App:
-        type: attribute
+      TravelExpenseTracker_Entity:
+        type: xml
         is_bundle: false
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: App
+        dir: '%kernel.project_dir%/src/TravelExpenseTracker/Infrastructure/Doctrine/ORM/Mapping/Entity'
+        prefix: 'App\TravelExpenseTracker\Domain\Entity'
+        alias: TravelExpenseTracker_Entity
+      TravelExpenseTracker_ValueObject:
+        type: xml
+        is_bundle: false
+        dir: '%kernel.project_dir%/src/TravelExpenseTracker/Infrastructure/Doctrine/ORM/Mapping/ValueObject'
+        prefix: 'App\TravelExpenseTracker\Domain\ValueObject'
+        alias: TravelExpenseTracker_ValueObject
     controller_resolver:
       auto_mapping: false
 
