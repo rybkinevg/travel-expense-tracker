@@ -40,7 +40,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "8.3"
-          php_extensions: ctype, iconv, bcmath, pdo, pdo_pgsql, intl
+          php_extensions: bcmath
 
       - name: Run doctrine schema create
         run: php bin/console doctrine:schema:create
