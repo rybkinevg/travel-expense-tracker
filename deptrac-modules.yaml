@@ -2,46 +2,17 @@ deptrac:
   paths:
     - ./src
 
-  exclude_files:
-    - src/.*/Infrastructure/ACL/.*
-
   layers:
     - name: Shared
       collectors:
         - type: directory
           value: /src/Shared/.*
 
-    - name: Travelling_Shared
+    - name: TravelExpenseTracker
       collectors:
         - type: directory
-          value: /src/Travelling/Shared/.*
-
-    - name: Travelling_Trip
-      collectors:
-        - type: directory
-          value: /src/Travelling/Trip/.*
-
-    - name: Travelling_Expense
-      collectors:
-        - type: directory
-          value: /src/Travelling/Expense/.*
-
-    - name: Chatting
-      collectors:
-        - type: directory
-          value: /src/Chatting/.*
+          value: /src/TravelExpenseTracker/.*
 
   ruleset:
-    Travelling_Shared:
-      - Shared
-
-    Travelling_Trip:
-      - Shared
-      - Travelling_Shared
-
-    Travelling_Expense:
-      - Shared
-      - Travelling_Shared
-
-    Chatting:
+    TravelExpenseTracker:
       - Shared
