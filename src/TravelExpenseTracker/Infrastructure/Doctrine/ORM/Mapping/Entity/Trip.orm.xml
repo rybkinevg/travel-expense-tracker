@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\TravelExpenseTracker\Domain\Entity\Trip"
+            table="tet_trips">
+        <id column="id"
+            name="id"
+            type="trip_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tet_trips_seq"/>
+        </id>
+
+        <embedded name="chatId"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\ChatId"
+                  use-column-prefix="false"
+        />
+
+        <field column="is_active"
+               name="isActive"
+               type="boolean"
+        />
+
+        <embedded name="title"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\TripTitle"
+                  use-column-prefix="false"
+        />
+
+        <field column="started_at"
+               name="startedAt"
+               type="datetime"
+        />
+
+        <field column="completed_at"
+               name="completedAt"
+               type="datetime"
+               nullable="true"
+        />
+
+        <one-to-many field="travelers"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Traveler"
+                     mapped-by="trip"
+                     orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
+        <one-to-many field="expenses"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Expense"
+                     mapped-by="trip"
+                     orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
+        <indexes>
+            <index columns="chat_id"/>
+        </indexes>
+    </entity>
+</doctrine-mapping>

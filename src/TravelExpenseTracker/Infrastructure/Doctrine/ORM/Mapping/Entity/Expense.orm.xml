@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\TravelExpenseTracker\Domain\Entity\Expense"
+            table="tet_expenses">
+        <id column="id"
+            name="id"
+            type="expense_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tet_expenses_seq"/>
+        </id>
+
+        <many-to-one field="trip"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Trip"
+                     inversed-by="expenses">
+            <join-column name="trip_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-one field="payer"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Traveler"
+                     inversed-by="expenses">
+            <join-column nullable="false"/>
+        </many-to-one>
+
+        <embedded name="description"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\ExpenseDescription"
+                  use-column-prefix="false"
+        />
+
+        <embedded name="amount"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\ExpenseAmount"
+                  use-column-prefix="false"
+        />
+
+        <field column="created_at"
+               name="createdAt"
+               type="datetime"
+        />
+
+        <many-to-many field="debtors"
+                      target-entity="App\TravelExpenseTracker\Domain\Entity\Traveler">
+            <join-table name="tet_expenses_debtors">
+                <join-columns>
+                    <join-column name="expense_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="debtor_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,11 @@
+🧳 Active trip information
+
+<strong>Title</strong>: {{ title }}
+
+<strong>Dates</strong>: {{ startedAt }}{% if completedAt %} - {{ completedAt }}{% endif %} ({% if durationInDays != 0 %}{{ durationInDays }} days{% else %}{{ durationInHours }} hours{% endif %})
+
+<strong>Travelers</strong>:
+
+{% for traveler in travelers %}- {{ traveler.fullName }} ({{ traveler.username }})
+{% else %}No one has joined yet...
+{% endfor %}

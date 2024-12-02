@@ -1,0 +1,16 @@
+🛬 Trip has been successfully completed!
+
+
+Please do not forget about your debts:
+
+{% for total in totals %}
+<strong>{{ total.fullName }} ({{ total.chatMemberUsername }})</strong>
+{% for debt in total.debts %}
+- {{ debt.fullName }} ({{ debt.chatMemberUsername }}) - {{ debt.amount }}
+{% if loop.last %}
+
+{% endif %}
+{% endfor %}
+{% else %}
+WOW, there are no debts!
+{% endfor %}

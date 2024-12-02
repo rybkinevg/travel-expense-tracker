@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\TravelExpenseTracker\Domain\Entity\Traveler"
+            table="tet_travelers">
+        <id column="id"
+            name="id"
+            type="traveler_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tet_travelers_seq"/>
+        </id>
+
+        <many-to-one field="trip"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Trip"
+                     inversed-by="travelers">
+            <join-column nullable="false"/>
+        </many-to-one>
+
+        <embedded name="chatMemberUsername"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\ChatMemberUsername"
+                  use-column-prefix="false"
+        />
+
+        <embedded name="fullName"
+                  class="App\TravelExpenseTracker\Domain\ValueObject\TravelerFullName"
+                  use-column-prefix="false"
+        />
+
+        <one-to-many field="expenses"
+                     target-entity="App\TravelExpenseTracker\Domain\Entity\Expense"
+                     mapped-by="payer"
+                     orphan-removal="true"
+        />
+
+        <unique-constraints>
+            <unique-constraint columns="trip_id,chat_member_username"/>
+        </unique-constraints>
+    </entity>
+</doctrine-mapping>
