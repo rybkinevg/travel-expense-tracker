@@ -1,0 +1,99 @@
+name: 'Test'
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  analyse:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: symfony_db
+          POSTGRES_USER: symfony_user
+          POSTGRES_PASSWORD: symfony_pass
+
+    env:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      DB_HOST: localhost
+      DB_NAME: symfony_db
+      DB_USER: symfony_user
+      DB_PASSWORD: symfony_pass
+      DB_PORT: 5432
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.3"
+
+      - name: Run doctrine schema create
+        run: php bin/console doctrine:schema:create
+
+      - name: Run php-cs-fixer
+        run: php ./vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run deptrac
+        run: |
+          vendor/bin/deptrac analyze --config-file=deptrac-layers.yaml
+          vendor/bin/deptrac analyze --config-file=deptrac-modules.yaml
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon
+
+      - name: Run composer validate
+        run: composer validate --no-check-all --strict
+
+      - name: Run doctrine:schema:validate
+        run: php bin/console doctrine:schema:validate
+
+  test:
+    runs-on: ubuntu-latest
+    needs: analyse
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: symfony_db
+          POSTGRES_USER: symfony_user
+          POSTGRES_PASSWORD: symfony_pass
+    env:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: symfony
+      POSTGRES_PASSWORD: symfony
+      DB_HOST: localhost
+      DB_NAME: symfony_db
+      DB_USER: symfony_user
+      DB_PASSWORD: symfony_pass
+      DB_PORT: 5432
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run doctrine schema create
+        run: php bin/console doctrine:schema:create
+
+#      - name: Run tests
+#        run: php bin/phpunit
