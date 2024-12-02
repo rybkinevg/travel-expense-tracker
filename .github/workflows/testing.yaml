@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:14
+        image: postgres:15
         ports:
           - "5432:5432"
         env:
@@ -18,14 +18,13 @@ jobs:
           POSTGRES_PASSWORD: symfony_pass
 
     env:
-      POSTGRES_DB: symfony
-      POSTGRES_USER: symfony
-      POSTGRES_PASSWORD: symfony
-      DB_HOST: localhost
-      DB_NAME: symfony_db
-      DB_USER: symfony_user
-      DB_PASSWORD: symfony_pass
-      DB_PORT: 5432
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5432
+      DATABASE_NAME: symfony_db
+      DATABASE_USER: symfony_user
+      DATABASE_PASSWORD: symfony_pass
+      DATABASE_DRIVER: pdo_pgsql
+      DATABASE_SERVER_VERSION: 15
 
     steps:
       - uses: actions/checkout@v2
