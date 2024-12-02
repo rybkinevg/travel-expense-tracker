@@ -13,11 +13,11 @@ interface TravelerRepositoryInterface
 {
     public function findByTripIdAndChatMemberUsername(
         TripId $tripId,
-        ChatMemberUsername $chatMemberUsername
+        ChatMemberUsername $chatMemberUsername,
     ): ?Traveler;
 
     public function findByTripIdAndChatMemberUsernames(
         TripId $tripId,
-        ChatMemberUsername ...$chatMemberUsernames
+        ChatMemberUsername ...$chatMemberUsernames,
     ): Collection;
 }

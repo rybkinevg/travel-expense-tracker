@@ -102,7 +102,7 @@ final readonly class SharedDebtTotalsCalculator implements DebtTotalsCalculatorI
                 $totals[$debtorId]['debts'][] = [
                     'fullName' => $traveler->getFullName()->value(),
                     'chatMemberUsername' => $traveler->getChatMemberUsername()->value(),
-                    'amount' => $debtAmount->value()
+                    'amount' => $debtAmount->value(),
                 ];
             }
         }

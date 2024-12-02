@@ -19,7 +19,7 @@ final class ExpenseIdType extends BigIntType
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?ExpenseId
     {
-        return ($value !== null)
+        return (null !== $value)
             ? new ExpenseId($value)
             : null;
     }

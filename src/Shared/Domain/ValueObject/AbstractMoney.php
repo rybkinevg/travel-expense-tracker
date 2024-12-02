@@ -30,7 +30,7 @@ abstract readonly class AbstractMoney extends AbstractValueObject
 
     public function equals(AbstractMoney $money): bool
     {
-        return bccomp($this->value, $money->value, self::DECIMAL_SCALE) === 0;
+        return 0 === bccomp($this->value, $money->value, self::DECIMAL_SCALE);
     }
 
     public function add(AbstractMoney $amount): static
@@ -61,12 +61,12 @@ abstract readonly class AbstractMoney extends AbstractValueObject
 
     public function isGreaterThan(AbstractMoney $amount): bool
     {
-        return $this->compare($amount) === 1;
+        return 1 === $this->compare($amount);
     }
 
     public function isLessThan(AbstractMoney $amount): bool
     {
-        return $this->compare($amount) === -1;
+        return -1 === $this->compare($amount);
     }
 
     /**
@@ -86,7 +86,7 @@ abstract readonly class AbstractMoney extends AbstractValueObject
      */
     protected function assertValueIsNumeric(string $value): void
     {
-        if ($value !== '' && preg_match('/^(-)?[0-9]+(\\.[0-9]+)?$/', $value)) {
+        if ('' !== $value && preg_match('/^(-)?[0-9]+(\\.[0-9]+)?$/', $value)) {
             return;
         }
 

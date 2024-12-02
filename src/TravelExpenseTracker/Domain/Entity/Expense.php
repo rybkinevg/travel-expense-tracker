@@ -23,7 +23,7 @@ final class Expense
 
     public function __construct(
         ExpenseDescription $description,
-        ExpenseAmount $amount
+        ExpenseAmount $amount,
     ) {
         $this->description = $description;
         $this->amount = $amount;
@@ -32,7 +32,7 @@ final class Expense
         $this->debtors = new ArrayCollection();
     }
 
-    # Getters
+    // Getters
 
     public function getId(): ?ExpenseId
     {
@@ -69,7 +69,7 @@ final class Expense
         return $this->createdAt;
     }
 
-    # Methods
+    // Methods
 
     public function setTrip(Trip $trip): void
     {

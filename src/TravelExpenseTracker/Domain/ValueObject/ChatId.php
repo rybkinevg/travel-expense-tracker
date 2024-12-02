@@ -6,7 +6,4 @@ namespace App\TravelExpenseTracker\Domain\ValueObject;
 
 use App\Shared\Domain\ValueObject\AbstractStringValueObject;
 
-final readonly class ChatId extends AbstractStringValueObject
-{
-    //
-}
+final readonly class ChatId extends AbstractStringValueObject {}

@@ -16,8 +16,6 @@ final readonly class GetLastCompletedTripDebtsQueryHandler implements QueryHandl
     ) {}
 
     /**
-     * @param GetLastCompletedTripDebtsQuery $query
-     *
      * @return null | array<array-key, array{fullName: string, chatMemberUsername: string, debts: array{fullName: string, chatMemberUsername: string, amount: string}>
      */
     public function __invoke(GetLastCompletedTripDebtsQuery $query): ?array

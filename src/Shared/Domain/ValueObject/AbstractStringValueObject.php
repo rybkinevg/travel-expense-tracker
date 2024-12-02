@@ -12,7 +12,7 @@ abstract readonly class AbstractStringValueObject extends AbstractValueObject
      * @throws \UnexpectedValueException
      */
     public function __construct(
-        string $value
+        string $value,
     ) {
         $this->value = $this->normalize($value);
     }
@@ -48,7 +48,7 @@ abstract readonly class AbstractStringValueObject extends AbstractValueObject
             return;
         }
 
-        $message = ($length === 0)
+        $message = (0 === $length)
             ? 'Строка не должна быть пустой'
             : "Строка [$value] слишком короткая (минимальная длина: [$min])";
 

@@ -34,7 +34,7 @@ class Traveler
         $this->expenses = new ArrayCollection();
     }
 
-    # Getters
+    // Getters
 
     public function getId(): TravelerId
     {
@@ -61,7 +61,7 @@ class Traveler
         return $this->expenses;
     }
 
-    # Methods
+    // Methods
 
     public function setTrip(Trip $trip): void
     {

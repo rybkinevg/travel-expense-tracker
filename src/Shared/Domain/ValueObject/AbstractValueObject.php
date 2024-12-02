@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObject;
 
-use Stringable;
-
-abstract readonly class AbstractValueObject implements Stringable
+abstract readonly class AbstractValueObject implements \Stringable
 {
     abstract public function value(): mixed;
 

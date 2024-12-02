@@ -24,7 +24,7 @@ final readonly class TripData
     public static function fromEntity(Trip $trip): self
     {
         $travelers = array_map(
-            static fn(Traveler $traveler) => TravelerData::fromEntity($traveler),
+            static fn (Traveler $traveler) => TravelerData::fromEntity($traveler),
             $trip->getTravelers()->toArray()
         );
 
@@ -44,7 +44,7 @@ final readonly class TripData
     public function toArray(): array
     {
         $travelers = array_map(
-            static fn(TravelerData $data) => $data->toArray(),
+            static fn (TravelerData $data) => $data->toArray(),
             $this->travelers
         );
 

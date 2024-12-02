@@ -12,7 +12,7 @@ abstract readonly class AbstractIntValueObject extends AbstractValueObject
      * @throws \UnexpectedValueException
      */
     public function __construct(
-        int $value
+        int $value,
     ) {
         $this->assertValueIsGreaterThan($value, 0);
 

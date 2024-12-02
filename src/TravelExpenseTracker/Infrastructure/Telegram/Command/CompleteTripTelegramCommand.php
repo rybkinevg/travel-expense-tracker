@@ -40,7 +40,7 @@ final class CompleteTripTelegramCommand extends AbstractTelegramCommand implemen
     {
         return [
             '/completetrip',
-            '/completeTrip'
+            '/completeTrip',
         ];
     }
 

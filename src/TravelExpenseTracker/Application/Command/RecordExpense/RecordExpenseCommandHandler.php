@@ -66,7 +66,7 @@ final readonly class RecordExpenseCommandHandler implements CommandHandlerInterf
 
     private function assertTravelersMatchesChatMemberUsernames(
         array $chatMemberUsernames,
-        Collection $travelers
+        Collection $travelers,
     ): void {
         foreach ($chatMemberUsernames as $chatMemberUsername) {
             $isExists = $travelers->exists(

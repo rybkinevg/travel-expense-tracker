@@ -9,7 +9,7 @@ final readonly class AndSpecification implements SpecificationInterface
     private array $specifications;
 
     public function __construct(
-        SpecificationInterface ...$specifications
+        SpecificationInterface ...$specifications,
     ) {
         $this->specifications = $specifications;
     }

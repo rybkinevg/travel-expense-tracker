@@ -19,7 +19,7 @@ final class TravelerIdType extends BigIntType
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?TravelerId
     {
-        return ($value !== null)
+        return (null !== $value)
             ? new TravelerId($value)
             : null;
     }

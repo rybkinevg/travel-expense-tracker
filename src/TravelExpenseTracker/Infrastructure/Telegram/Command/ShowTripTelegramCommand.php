@@ -38,7 +38,7 @@ final class ShowTripTelegramCommand extends AbstractTelegramCommand implements P
     {
         return [
             '/showtrip',
-            '/showTrip'
+            '/showTrip',
         ];
     }
 
@@ -46,7 +46,7 @@ final class ShowTripTelegramCommand extends AbstractTelegramCommand implements P
     {
         $chat = $update->getMessage()?->getChat();
 
-        /** @var TripData | null $tripData */
+        /** @var TripData|null $tripData */
         $tripData = $this->queryBus->ask(
             new FindActiveTripByChatIdQuery(
                 new ChatId((string) $chat->getId())

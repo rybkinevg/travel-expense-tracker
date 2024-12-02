@@ -12,7 +12,7 @@ use App\TravelExpenseTracker\Domain\ValueObject\TripTitle;
 final readonly class TripFactory
 {
     public function __construct(
-        private TripSpecificationPool $specificationPool
+        private TripSpecificationPool $specificationPool,
     ) {}
 
     public function create(

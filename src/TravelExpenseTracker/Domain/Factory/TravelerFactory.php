@@ -12,7 +12,7 @@ final readonly class TravelerFactory
 {
     public function create(
         ChatMemberUsername $chatMemberUsername,
-        TravelerFullName $fullName
+        TravelerFullName $fullName,
     ): Traveler {
         return new Traveler(
             chatMemberUsername: $chatMemberUsername,

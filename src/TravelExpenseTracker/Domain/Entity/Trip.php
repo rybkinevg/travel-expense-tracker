@@ -32,7 +32,7 @@ final class Trip
     public function __construct(
         ChatId $chatId,
         TripTitle $title,
-        TripSpecificationPool $specificationPool
+        TripSpecificationPool $specificationPool,
     ) {
         $this->chatId = $chatId;
         $this->title = $title;
@@ -43,7 +43,7 @@ final class Trip
         $this->specificationPool = $specificationPool;
     }
 
-    # Getters
+    // Getters
 
     public function getId(): ?TripId
     {
@@ -85,7 +85,7 @@ final class Trip
         return $this->expenses;
     }
 
-    # Methods
+    // Methods
 
     public function start(): void
     {
@@ -109,7 +109,7 @@ final class Trip
 
     public function isCompleted(): bool
     {
-        return $this->isActive === false && $this->completedAt !== null;
+        return false === $this->isActive && null !== $this->completedAt;
     }
 
     public function complete(): void

@@ -12,7 +12,7 @@ final readonly class ExpenseFactory
 {
     public function create(
         ExpenseDescription $description,
-        ExpenseAmount $amount
+        ExpenseAmount $amount,
     ): Expense {
         return new Expense(
             description: $description,

@@ -8,7 +8,6 @@ use App\TravelExpenseTracker\Domain\Entity\Trip;
 use App\TravelExpenseTracker\Domain\Exception\TripAlreadyExistException;
 use App\TravelExpenseTracker\Domain\ValueObject\ChatId;
 use App\TravelExpenseTracker\Domain\ValueObject\TripId;
-use RuntimeException;
 
 interface TripRepositoryInterface
 {
@@ -20,7 +19,7 @@ interface TripRepositoryInterface
 
     /**
      * @throws TripAlreadyExistException
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     public function save(Trip $trip): void;
 }

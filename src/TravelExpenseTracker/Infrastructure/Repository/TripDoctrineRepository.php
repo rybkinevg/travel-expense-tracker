@@ -42,7 +42,7 @@ final class TripDoctrineRepository extends ServiceEntityRepository implements Tr
     {
         return $this->findOneBy([
             'chatId.value' => $chatId->value(),
-            'isActive' => true
+            'isActive' => true,
         ]);
     }
 
@@ -50,7 +50,7 @@ final class TripDoctrineRepository extends ServiceEntityRepository implements Tr
     {
         $criteria = [
             'chatId.value' => $chatId->value(),
-            'isActive' => false
+            'isActive' => false,
         ];
 
         $orderBy = [

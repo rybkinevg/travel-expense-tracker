@@ -34,7 +34,7 @@ abstract class AbstractTelegramCommand extends AbstractCommand implements Public
     protected function sendErrorMessage(BotApi $api, mixed $chatId, ?string $message = null): void
     {
         $context = [
-            'description' => $message ?? 'Что-то пошло не так, пожалуйста, попробуйте позже'
+            'description' => $message ?? 'Что-то пошло не так, пожалуйста, попробуйте позже',
         ];
 
         $payload = new MessagePayload(

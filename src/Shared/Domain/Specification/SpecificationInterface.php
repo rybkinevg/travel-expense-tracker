@@ -11,8 +11,6 @@ interface SpecificationInterface
 {
     /**
      * @param T $item
-     *
-     * @return bool
      */
     public function isSatisfiedBy(mixed $item): bool;
 }

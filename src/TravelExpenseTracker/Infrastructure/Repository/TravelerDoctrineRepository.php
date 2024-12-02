@@ -29,7 +29,7 @@ final class TravelerDoctrineRepository extends ServiceEntityRepository implement
 
     public function findByTripIdAndChatMemberUsername(
         TripId $tripId,
-        ChatMemberUsername $chatMemberUsername
+        ChatMemberUsername $chatMemberUsername,
     ): ?Traveler {
         $collection = $this->findByTripIdAndChatMemberUsernames($tripId, $chatMemberUsername);
 
@@ -38,16 +38,16 @@ final class TravelerDoctrineRepository extends ServiceEntityRepository implement
 
     public function findByTripIdAndChatMemberUsernames(
         TripId $tripId,
-        ChatMemberUsername ...$chatMemberUsernames
+        ChatMemberUsername ...$chatMemberUsernames,
     ): Collection {
         $chatMemberUsernameValues = array_map(
-            static fn(ChatMemberUsername $chatMemberUsername): string => $chatMemberUsername->value(),
+            static fn (ChatMemberUsername $chatMemberUsername): string => $chatMemberUsername->value(),
             $chatMemberUsernames
         );
 
         $items = $this->findBy([
             'trip' => $tripId,
-            'chatMemberUsername.value' => $chatMemberUsernameValues
+            'chatMemberUsername.value' => $chatMemberUsernameValues,
         ]);
 
         return new ArrayCollection($items);

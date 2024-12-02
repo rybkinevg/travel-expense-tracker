@@ -6,7 +6,4 @@ namespace App\TravelExpenseTracker\Domain\ValueObject;
 
 use App\Shared\Domain\ValueObject\AbstractIntValueObject;
 
-final readonly class ExpenseId extends AbstractIntValueObject
-{
-    //
-}
+final readonly class ExpenseId extends AbstractIntValueObject {}
