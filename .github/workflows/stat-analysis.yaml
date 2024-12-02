@@ -1,0 +1,39 @@
+name: Static analysis
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          tools: composer:v2
+          extensions: ctype, iconv, bcmath, intl
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Run composer validation
+        run: composer validate --no-check-all --strict
+
+      - name: Run php-cs-fixer
+        run: composer phpcs:fix
+
+      - name: Run PHPStan
+        run: composer phpstan:analyse
+
+      - name: Run deptrac
+        run: |
+          composer deptrac:layers
+          composer deptrac:modules
