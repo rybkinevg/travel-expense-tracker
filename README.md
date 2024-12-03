@@ -25,5 +25,5 @@ make exec ARGS="composer install"
 Setup telegram webhook:
 
 ```shell
-php bin/console telegram:webhook:set
+make exec ARGS="php bin/console telegram:webhook:set"
 ```
