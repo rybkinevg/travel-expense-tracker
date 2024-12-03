@@ -28,7 +28,7 @@ final class HelpTelegramCommand extends AbstractTelegramCommand implements Publi
     public function getAliases(): array
     {
         return [
-            '/help'
+            '/help',
         ];
     }
 

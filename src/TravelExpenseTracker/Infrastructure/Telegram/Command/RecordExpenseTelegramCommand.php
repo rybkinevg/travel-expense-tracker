@@ -73,7 +73,7 @@ final class RecordExpenseTelegramCommand extends AbstractTelegramCommand impleme
             [$amount, $description, $debtorChatMemberUsernames] = $this->parseCommandParameters($update);
 
             $debtorChatMemberUsernames = array_map(
-                static fn(string $username): ChatMemberUsername => new ChatMemberUsername($username),
+                static fn (string $username): ChatMemberUsername => new ChatMemberUsername($username),
                 $debtorChatMemberUsernames
             );
 

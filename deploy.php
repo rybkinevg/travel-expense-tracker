@@ -12,7 +12,7 @@ set('repository', 'git@github.com:rybkinevg/travel-expense-tracker.git');
 
 set('default_timeout', 3600);
 set('keep_releases', 2);
-set('release_name', static fn() => date('Y-m-d-His'));
+set('release_name', static fn () => date('Y-m-d-His'));
 
 add('shared_files', []);
 add('shared_dirs', []);
