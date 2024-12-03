@@ -32,7 +32,7 @@ final class JoinTripTelegramCommand extends AbstractTelegramCommand implements P
 
     public function getDescription(): string
     {
-        return '';
+        return 'Allows to join active trip';
     }
 
     public function getAliases(): array
@@ -41,6 +41,11 @@ final class JoinTripTelegramCommand extends AbstractTelegramCommand implements P
             '/joinTrip',
             '/jointrip',
         ];
+    }
+
+    public function getSortOrder(): int
+    {
+        return 200;
     }
 
     public function execute(BotApi $api, Update $update): void

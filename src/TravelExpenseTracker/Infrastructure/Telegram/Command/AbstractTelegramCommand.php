@@ -16,15 +16,17 @@ abstract class AbstractTelegramCommand extends AbstractCommand implements Public
         protected readonly Environment $twig,
     ) {}
 
-    abstract protected function getSuccessMessageTemplate(): string;
-
-    /**
-     * @return string[]
-     */
-    public function getAliases(): array
+    public function getExamples(): array
     {
-        return parent::getAliases();
+        return [];
     }
+
+    public function getSortOrder(): int
+    {
+        return 1;
+    }
+
+    abstract protected function getSuccessMessageTemplate(): string;
 
     protected function getErrorMessageTemplate(): string
     {

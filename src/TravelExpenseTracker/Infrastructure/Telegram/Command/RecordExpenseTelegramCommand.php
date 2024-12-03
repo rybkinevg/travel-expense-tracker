@@ -35,15 +35,29 @@ final class RecordExpenseTelegramCommand extends AbstractTelegramCommand impleme
 
     public function getDescription(): string
     {
-        return '';
+        return 'Allows to record expenses during active trip';
     }
 
     public function getAliases(): array
     {
         return [
-            '/recordexpense',
             '/recordExpense',
+            '/recordexpense',
         ];
+    }
+
+    public function getExamples(): array
+    {
+        return [
+            '/recordexpense [Amount] / [Description] / [?List of debtors]',
+            '/recordexpense 300 / Snacks',
+            '/recordexpense 1000 / Dinner / @traveler1 @traveler2',
+        ];
+    }
+
+    public function getSortOrder(): int
+    {
+        return 400;
     }
 
     public function execute(BotApi $api, Update $update): void

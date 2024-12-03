@@ -29,15 +29,29 @@ final class StartTripTelegramCommand extends AbstractTelegramCommand implements 
 
     public function getDescription(): string
     {
-        return '';
+        return 'Allows to start new trip';
     }
 
     public function getAliases(): array
     {
         return [
-            '/starttrip',
             '/startTrip',
+            '/starttrip',
         ];
+    }
+
+    public function getExamples(): array
+    {
+        return [
+            '/startTrip [?Title]',
+            '/startTrip',
+            '/startTrip Euro Tour',
+        ];
+    }
+
+    public function getSortOrder(): int
+    {
+        return 100;
     }
 
     public function execute(BotApi $api, Update $update): void

@@ -33,15 +33,20 @@ final class CompleteTripTelegramCommand extends AbstractTelegramCommand implemen
 
     public function getDescription(): string
     {
-        return '';
+        return 'Allows to complete the active trip';
     }
 
     public function getAliases(): array
     {
         return [
-            '/completetrip',
             '/completeTrip',
+            '/completetrip',
         ];
+    }
+
+    public function getSortOrder(): int
+    {
+        return 500;
     }
 
     public function execute(BotApi $api, Update $update): void

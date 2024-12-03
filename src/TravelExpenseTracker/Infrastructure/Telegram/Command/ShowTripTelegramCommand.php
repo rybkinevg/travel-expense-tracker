@@ -31,15 +31,20 @@ final class ShowTripTelegramCommand extends AbstractTelegramCommand implements P
 
     public function getDescription(): string
     {
-        return '';
+        return 'Displays the active trip information';
     }
 
     public function getAliases(): array
     {
         return [
-            '/showtrip',
             '/showTrip',
+            '/showtrip',
         ];
+    }
+
+    public function getSortOrder(): int
+    {
+        return 300;
     }
 
     public function execute(BotApi $api, Update $update): void
