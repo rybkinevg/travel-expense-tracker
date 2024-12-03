@@ -26,8 +26,11 @@ final readonly class SharedDebtTotalsCalculator implements DebtTotalsCalculatorI
 
         // calculating debt total per expense
         foreach ($expenses as $expense) {
-            $payerId = $expense->getPayer()->getId()->value();
+            $payer = $expense->getPayer();
+            $payerId = $payer->getId()->value();
             $debtors = $expense->getDebtors();
+
+            $cachedTravelers[$payerId] = $payer;
 
             if ($debtors->isEmpty()) {
                 continue;

@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\Collection;
 
 final class Expense
 {
-    private readonly ?ExpenseId $id;
+    private ?ExpenseId $id;
     private ?Trip $trip = null;
     private ?Traveler $payer = null;
     private readonly ExpenseDescription $description;
