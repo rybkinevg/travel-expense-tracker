@@ -89,6 +89,7 @@
         }
     },
     "require-dev": {
+        "deployer/deployer": "^7.5",
         "friendsofphp/php-cs-fixer": "^3.64",
         "phpstan/phpstan": "^2.0",
         "qossmic/deptrac": "^2.0",
