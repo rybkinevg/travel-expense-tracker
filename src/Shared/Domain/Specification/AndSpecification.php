@@ -6,6 +6,9 @@ namespace App\Shared\Domain\Specification;
 
 final readonly class AndSpecification implements SpecificationInterface
 {
+    /**
+     * @var SpecificationInterface[]
+     */
     private array $specifications;
 
     public function __construct(

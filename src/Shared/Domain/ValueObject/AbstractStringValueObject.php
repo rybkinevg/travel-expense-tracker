@@ -49,8 +49,8 @@ abstract readonly class AbstractStringValueObject extends AbstractValueObject
         }
 
         $message = (0 === $length)
-            ? 'Строка не должна быть пустой'
-            : "Строка [$value] слишком короткая (минимальная длина: [$min])";
+            ? 'String should not be empty'
+            : "String [$value] is too short (min length: [$min])";
 
         throw new \UnexpectedValueException($message);
     }
@@ -64,7 +64,7 @@ abstract readonly class AbstractStringValueObject extends AbstractValueObject
         }
 
         $message = sprintf(
-            'Строка [%s] слишком длинная (максимальная длина: [%s])',
+            'String [%s] too long (max length: [%s])',
             $length > $maxDisplayLength ? mb_substr($value, 0, $maxDisplayLength) . '...' : $value,
             $max
         );
