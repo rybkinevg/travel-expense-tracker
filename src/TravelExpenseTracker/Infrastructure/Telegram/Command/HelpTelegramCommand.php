@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\TravelExpenseTracker\Infrastructure\Telegram\Command;
 
+use BoShurik\TelegramBotBundle\Telegram\Command\CommandInterface;
 use BoShurik\TelegramBotBundle\Telegram\Command\PublicCommandInterface;
 use BoShurik\TelegramBotBundle\Telegram\Command\Registry\CommandRegistry;
 use TelegramBot\Api\BotApi;
@@ -45,8 +46,12 @@ final class HelpTelegramCommand extends AbstractTelegramCommand implements Publi
     {
         $commands = $this->commandRegistry->getCommands();
 
-        usort($commands, function (AbstractTelegramCommand $a, AbstractTelegramCommand $b): bool {
-            return $a->getSortOrder() > $b->getSortOrder();
+        usort($commands, function (CommandInterface $a, CommandInterface $b): int {
+            if (!method_exists($a, 'getSortOrder') || !method_exists($b, 'getSortOrder')) {
+                return -1;
+            }
+
+            return $a->getSortOrder() > $b->getSortOrder() ? 1 : -1;
         });
 
         $context = ['commands' => []];
@@ -56,14 +61,23 @@ final class HelpTelegramCommand extends AbstractTelegramCommand implements Publi
                 continue;
             }
 
+            // skip "help" command
             if ($command instanceof self) {
                 continue;
             }
 
+            $name = method_exists($command, 'getAliases')
+                ? current($command->getAliases())
+                : $command->getName();
+
+            $examples = method_exists($command, 'getExamples')
+                ? $command->getExamples()
+                : [];
+
             $context['commands'][] = [
-                'name' => current($command->getAliases()),
+                'name' => $name,
                 'description' => $command->getDescription(),
-                'examples' => $command->getExamples(),
+                'examples' => $examples,
             ];
         }
 
