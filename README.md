@@ -1,6 +1,6 @@
 # Travel Expense Tracker
 
-...
+Telegram bot for tracking expenses in joint trips.
 
 ## Installation
 
