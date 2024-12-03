@@ -15,9 +15,6 @@ final readonly class GetLastCompletedTripDebtsQueryHandler implements QueryHandl
         private DebtTotalsCalculatorInterface $debtTotalsCalculator,
     ) {}
 
-    /**
-     * @return null | array<array-key, array{fullName: string, chatMemberUsername: string, debts: array{fullName: string, chatMemberUsername: string, amount: string}>
-     */
     public function __invoke(GetLastCompletedTripDebtsQuery $query): ?array
     {
         $chatId = $query->chatId;

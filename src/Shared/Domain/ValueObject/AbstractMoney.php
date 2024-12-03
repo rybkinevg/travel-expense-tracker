@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObject;
 
+/** @phpstan-consistent-constructor */
 abstract readonly class AbstractMoney extends AbstractValueObject
 {
     private const int DECIMAL_SCALE = 2;
