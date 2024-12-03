@@ -54,6 +54,12 @@ final class CompleteTripTelegramCommand extends AbstractTelegramCommand implemen
             );
 
             $this->commandBus->dispatch($command);
+
+            $query = new GetLastCompletedTripDebtsQuery(
+                new ChatId((string) $chat->getId())
+            );
+
+            $totals = $this->queryBus->ask($query) ?? [];
         } catch (\Exception $e) {
             // the main exception class is always the base command error handler,
             // to get rid of the unnecessary wrapper of main exception, we will try
@@ -64,12 +70,6 @@ final class CompleteTripTelegramCommand extends AbstractTelegramCommand implemen
 
             return;
         }
-
-        $query = new GetLastCompletedTripDebtsQuery(
-            new ChatId((string) $chat->getId())
-        );
-
-        $totals = $this->queryBus->ask($query) ?? [];
 
         $this->sendSuccessMessage($api, $chat->getId(), ['totals' => $totals]);
     }
