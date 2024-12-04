@@ -19,7 +19,7 @@ final readonly class UniqueTravelerPerTripSpecification implements Specification
 
     public function isSatisfiedBy(mixed $item): bool
     {
-        $tripId = $item->getTrip()->getId();
+        $tripId = $item->getTrip()?->getId();
 
         if (null === $tripId) {
             return true;
